@@ -2,5 +2,8 @@
 # build.sh
 
 ME=${0##*/}
-# just put the script to .zip, exclude myself and previous build.zip
-7z a latest_build.zip . -x!latest_build.zip -x!$ME -x!update.json # no need exclude changelog
+ROOT=${0%/$ME}
+
+# just put the script to .zip
+rm -f latest_build.zip
+7z a "$ROOT/latest_build.zip" "$ROOT"/*.sh "$ROOT"/changelog.md "$ROOT"/module.prop -x!"$ROOT/$ME"
