@@ -4,4 +4,4 @@ version=v1.1
 versionCode=11000
 author=HelloWorld
 description=[🤔 A reboot is pending.] Fix Android/data, Android/obb, Android/media is missing.
-updateJson=https://github.com/helloworld2540/FixDataMissing/blob/main/update.json
+updateJson=https://raw.githubusercontent.com/helloworld2540/FixDataMissing/refs/heads/main/update.json
