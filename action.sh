@@ -3,8 +3,9 @@
 
 # tools variable
 MODDIR=${0%/*}
-FLAG_SUCCESS=$MODDIR/.success
-FLAG_FAIL=$MODDIR/.fail
+FLAG_SUCCESS="$MODDIR/.success"
+FLAG_FAIL="$MODDIR/.fail"
+FLAG_INTEGRITY_FAIL="$MODDIR/.integrity_fail"
 DAEMON="$MODDIR/.daemon"
 
 # system variable
@@ -101,6 +102,11 @@ main(){
 
     echo -e "[DONE] $FAILED fail in $COUNT apps."
 }
+
+if [ -e "$FLAG_INTEGRITY_FAIL" ]; then
+    echo -e "[ERROR] Module integrity check failed. Please reinstall the module."
+    exit 1
+fi
 
 main
 if [ -e "$DAEMON" ]; then

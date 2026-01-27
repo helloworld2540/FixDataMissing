@@ -10,7 +10,9 @@ FLAG_FAIL=$MODDIR/.fail
 # original description
 ORIDES="Fix Android/data, Android/obb, Android/media is missing."
 
-if [ -e "$FLAG_SUCCESS" ]; then
+if [ -e "$MODDIR/.integrity_fail" ]; then
+    NEW_DES="[⚠️ Module integrity compromised. Reinstall recommended.] $ORIDES"
+elif [ -e "$FLAG_SUCCESS" ]; then
     NEW_DES="[✅ Normal, no need to fix.] $ORIDES"
 elif [ -e "$FLAG_FAIL" ]; then
     NEW_DES="[❌ Need to fix, Click action button.] $ORIDES"

@@ -5,6 +5,7 @@
 MODDIR=${0%/*}
 FLAG_SUCCESS="$MODDIR/.success"
 FLAG_FAIL="$MODDIR/.fail"
+FLAG_INTEGRITY_FAIL="$MODDIR/.integrity_fail"
 DAEMON="$MODDIR/.daemon"
 
 # system variable
@@ -85,6 +86,12 @@ wait_until_login(){
 	rm -f /storage/emulated/0/Android/data/.WriteTest
     sleep 1 # wait for system ready
 }
+# verify module 
+verify_integrity(){
+    assert_file "$MODDIR/module.prop" || return 1
+    assert_file "$MODDIR/action.sh" || return 1
+    return 0
+}
 # main
 main(){
     assert_dir "$ANDROID/data" || return 1
@@ -113,6 +120,7 @@ main(){
 wait_until_login
 echo $$ > "$DAEMON" # kernel will create file automatically, so no need to create it manually
 while true; do
+    verify_integrity || new_file "$FLAG_INTEGRITY_FAIL"
     main
     source "$MODDIR/refresh_description.sh"
     sleep 1800 # sleep for 30 minutes

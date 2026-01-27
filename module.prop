@@ -1,7 +1,7 @@
 id=fix_data
 name=Fix Data Missing
-version=v1.1.1
-versionCode=11001
+version=1.1.2
+versionCode=11002
 author=HelloWorld
 description=[🤔 A reboot is pending.] Fix Android/data, Android/obb, Android/media is missing.
 updateJson=https://raw.githubusercontent.com/helloworld2540/FixDataMissing/refs/heads/main/update.json
