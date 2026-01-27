@@ -115,5 +115,5 @@ echo $$ > "$DAEMON" # kernel will create file automatically, so no need to creat
 while true; do
     main
     source "$MODDIR/refresh_description.sh"
-    sleep 300 # 5 min
+    sleep 1800 # sleep for 30 minutes
 done
