@@ -6,11 +6,12 @@ MODDIR=${0%/*}
 PROP="$MODDIR/module.prop"
 FLAG_SUCCESS=$MODDIR/.success
 FLAG_FAIL=$MODDIR/.fail
+FLAG_INTEGRITY_FAIL=$MODDIR/.integrity_fail
 
 # original description
 ORIDES="Fix Android/data, Android/obb, Android/media is missing."
 
-if [ -e "$MODDIR/.integrity_fail" ]; then
+if [ -e "$FLAG_INTEGRITY_FAIL" ]; then
     NEW_DES="[⚠️ Module integrity compromised. Reinstall recommended.] $ORIDES"
 elif [ -e "$FLAG_SUCCESS" ]; then
     NEW_DES="[✅ Normal, no need to fix.] $ORIDES"
