@@ -1,3 +1,5 @@
+# 1.1.2 (11002)
+- Add module integrity verification
 # 1.1.1 (11001)
 - Change daemon sleep time to 30 minutes
 # 1.1 (11000)
