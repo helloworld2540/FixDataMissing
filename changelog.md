@@ -1,3 +1,5 @@
+# 1.1.3 (11003)
+- Add fix data folder support for system apps, not only user app.
 # 1.1.2 (11002)
 - Add module integrity verification
 # 1.1.1 (11001)
