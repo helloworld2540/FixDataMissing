@@ -1,3 +1,5 @@
+# 1.1.5 (11500)
+- Improve action.sh ux
 # 1.1.4 (11004)
 - Show progess while action.
 # 1.1.3 (11003)
