@@ -98,9 +98,10 @@ main(){
         else
             [ $TMP_FAILED -eq $FAILED ] && FAILED=$(($FAILED + 1))
         fi
+        echo -ne "\r\033[K[RUNNING] $FAILED fail in $COUNT apps."
     done
 
-    echo -e "[DONE] $FAILED fail in $COUNT apps."
+    echo -e "\r\033[K[DONE] $FAILED fail in $COUNT apps."
 }
 
 if [ -e "$FLAG_INTEGRITY_FAIL" ]; then
