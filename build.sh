@@ -7,8 +7,10 @@ ROOT=${0%/$ME}
 # just put the script to .zip
 read -p "Update the module? (y/n): " UPDATE
 if [ "$UPDATE" = "y" ]; then
-    read -p "New version: " NEW_VER
-    read -p "New version code: " NEW_VER_CODE
+    NOW_VER_CODE=$(grep '^versionCode=' "$ROOT/module.prop" | cut -d'=' -f2)
+    NOW_VER=$(grep '^version=' "$ROOT/module.prop" | cut -d'=' -f2)
+    read -p "New version (Current: $NOW_VER): " NEW_VER
+    read -p "New version code(Current: $NOW_VER_CODE): " NEW_VER_CODE
     sed -i "s/^version=.*/version=$NEW_VER/" "$ROOT/module.prop"
     sed -i "s/^versionCode=.*/versionCode=$NEW_VER_CODE/" "$ROOT/module.prop"
     sed -i "s/\"version\": \".*\"/\"version\": \"$NEW_VER\"/" "$ROOT/update.json"
