@@ -98,8 +98,8 @@ main(){
     assert_dir "$ANDROID/obb" || return 1
     assert_dir "$ANDROID/media" || return 1
 
-    # get app list that user install
-    APP_LIST=$(pm list packages -3)
+    # get app list that installed
+    APP_LIST=$(pm list packages)
     assert $? || return 1
 
     for app in $APP_LIST; do

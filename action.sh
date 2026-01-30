@@ -59,8 +59,8 @@ main(){
     new_dir "$ANDROID/media"
     assert $?
 
-    # get app list that user install
-    APP_LIST=$(pm list packages -3)
+    # get app list that installed
+    APP_LIST=$(pm list packages)
     assert $?
 
     COUNT=$(echo "$APP_LIST" | wc -l)
