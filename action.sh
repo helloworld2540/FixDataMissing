@@ -49,6 +49,41 @@ assert(){
     fi
 }
 
+# ui helper
+get_bar_length(){
+    local current=$1
+    local total=$2
+    local max_width=$3 # 比如你想让进度条长 20 个字符
+    
+    if [ -z "$total" ] || [ "$total" -eq 0 ]; then
+        echo "$max_width"
+        return
+    fi
+    echo $((current * $max_width / $total))
+}
+repeat_string(){
+    local target=$1
+    local times=$2
+    local output=""
+    if [ "$times" -le 0 ]; then
+        echo ""
+        return 0
+    fi
+    while [ "$times" -gt 0 ]; do
+        output="${output}${target}"
+        times=$(($times - 1))
+    done
+    echo "$output"
+}
+draw_ui(){
+    local current=$1
+    local total=$2
+    local failed=$3
+    local max_width=10
+    local bar_length="$(get_bar_length "$current" "$total" "$max_width")"
+    local another_length=$(($max_width - $bar_length))
+    echo "[$(repeat_string "=" $bar_length)$(repeat_string "-" $another_length)] $current/$total ($failed failed.)"
+}
 # main
 main(){
     # makesure Android/data, Android/obb, Android/media is exist
@@ -65,7 +100,9 @@ main(){
 
     COUNT=$(echo "$APP_LIST" | wc -l)
     FAILED=0
+    COUNTER=0
     for app in $APP_LIST; do
+        COUNTER=$(($COUNTER + 1))
         TMP_FAILED=$FAILED
         app=${app#package:} # remove prefix
         if [ -z "$app" ]; then # skip empty line
@@ -98,7 +135,7 @@ main(){
         else
             [ $TMP_FAILED -eq $FAILED ] && FAILED=$(($FAILED + 1))
         fi
-        echo -ne "\r[RUNNING] $FAILED fail in $COUNT apps."
+        draw_ui "$COUNTER" "$COUNT" "$FAILED"
     done
 
     echo -e "\r[DONE] $FAILED fail in $COUNT apps.         "
@@ -111,14 +148,14 @@ fi
 
 main
 if [ -e "$DAEMON" ]; then
-    echo -e "[SYNC] Restarting daemon..."
+    echo -e "[ASYNC] Restarting daemon..."
     kill -9 $(cat "$DAEMON")
     rm -f "$DAEMON" # remove old daemon file
-    echo -e "[WAIT] Waiting for daemon..."
+    # echo -e "[WAIT] Waiting for daemon..."
     "$MODDIR"/service.sh &
-    while [ ! -e "$DAEMON" ]; do
-        sleep 1
-    done
-    sleep 1 # wait for description refresh
-    echo -e "[Ok] Daemon restarted."
+    # while [ ! -e "$DAEMON" ]; do
+    #     sleep 1
+    # done
+    # sleep 1 # wait for description refresh
+    echo -e "[Ok] Daemon restarted in background."
 fi
