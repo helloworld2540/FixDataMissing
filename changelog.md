@@ -1,5 +1,6 @@
 # 1.2.0 (12000)
 - action.sh: enhanced ui
+- action.sh: async in restart daemon
 # 1.1.5 (11500)
 - Improve action.sh ux
 # 1.1.4 (11004)
