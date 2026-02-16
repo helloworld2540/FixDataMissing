@@ -79,10 +79,10 @@ draw_ui(){
     local current=$1
     local total=$2
     local failed=$3
-    local max_width=10
+    local max_width=20
     local bar_length="$(get_bar_length "$current" "$total" "$max_width")"
     local another_length=$(($max_width - $bar_length))
-    echo "[$(repeat_string "=" $bar_length)$(repeat_string "-" $another_length)] $current/$total ($failed failed.)"
+    echo "[RUNNING] [$(repeat_string "=" $bar_length)$(repeat_string "-" $another_length)] $current/$total ($failed failed.)"
 }
 # main
 main(){
