@@ -1,3 +1,5 @@
+# 1.2.1 (12100)
+- Enhanced ui
 # 1.2.0 (12000)
 - action.sh: enhanced ui
 - action.sh: async in restart daemon
