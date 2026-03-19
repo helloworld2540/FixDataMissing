@@ -33,8 +33,7 @@ rm_file(){
 
 # assert helper
 assert_failed(){
-    new_file "$FLAG_FAIL"
-    rm_file "$FLAG_SUCCESS"
+    "$MODDIR"/action.sh quiet
     return 1
 }
 assert(){

@@ -1,3 +1,5 @@
+# 1.3.0 (13000)
+- Auto run fix in background
 # 1.2.1 (12100)
 - Enhanced ui
 # 1.2.0 (12000)

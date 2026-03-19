@@ -7,7 +7,11 @@ FLAG_SUCCESS="$MODDIR/.success"
 FLAG_FAIL="$MODDIR/.fail"
 FLAG_INTEGRITY_FAIL="$MODDIR/.integrity_fail"
 DAEMON="$MODDIR/.daemon"
-
+if [ ! -z "$1" ]; then
+    QUIET=1
+else
+    QUIET=0
+fi
 # system variable
 ROOT=/storage/emulated/0
 ANDROID="$ROOT/Android"
@@ -135,7 +139,9 @@ main(){
         else
             [ $TMP_FAILED -eq $FAILED ] && FAILED=$(($FAILED + 1))
         fi
-        draw_ui "$COUNTER" "$COUNT" "$FAILED"
+        if [ $QUIET -eq 0 ]; then
+            draw_ui "$COUNTER" "$COUNT" "$FAILED"
+        fi
     done
 
     echo -e "\r[DONE] $FAILED fail in $COUNT apps.         "
