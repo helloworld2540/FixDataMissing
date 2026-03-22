@@ -71,6 +71,7 @@ main(){
 }
 if [ $DAEMON_STARTUP -eq 1 ]; then
     "$MODDIR/refresh_description.sh"
+    export DAEMON_STARTUP=0
 fi
 local start_time=$(date +%s)
 main
