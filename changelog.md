@@ -1,3 +1,5 @@
+# 2.1.2 (21200)
+- fix description display logic bugs
 # 2.1.1 (21100)
 - refresh description before fix.
 # 2.1.0 (21000)
