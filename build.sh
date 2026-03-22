@@ -10,7 +10,7 @@ if [ "$UPDATE" = "y" ]; then
     NOW_VER_CODE=$(grep '^versionCode=' "$ROOT/src/module.prop" | cut -d'=' -f2)
     NOW_VER=$(grep '^version=' "$ROOT/src/module.prop" | cut -d'=' -f2)
     read -p "New version (Current: $NOW_VER): " NEW_VER
-    read -p "New version code(Current: $NOW_VER_CODE): " NEW_VER_CODE
+    read -p "New version code (Current: $NOW_VER_CODE): " NEW_VER_CODE
     sed -i "s/^version=.*/version=$NEW_VER/" "$ROOT/src/module.prop"
     sed -i "s/^versionCode=.*/versionCode=$NEW_VER_CODE/" "$ROOT/src/module.prop"
     sed -i "s/\"version\": \".*\"/\"version\": \"$NEW_VER\"/" "$ROOT/update.json"
