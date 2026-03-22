@@ -25,5 +25,5 @@ else
     NEW_DES="[❌ Deamon is not running.] \\n"
     NEW_DES="$NEW_DES- Click 'action' to run fix and start deamon.\\n"
 fi
-NEW_DES="$NEW_DES$ORIDES"
-sed -i "s#^description=.*#description=$NEW_DES#" "$PROP"
+STATIC_PROPS=$(grep -v "^description=" "$PROP")
+printf "%s\ndescription=%s\n" "$STATIC_PROPS" "$NEW_DES" > "$PROP"
