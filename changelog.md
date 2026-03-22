@@ -1,3 +1,6 @@
+# 2.0.3 (20300)
+- add restart daemon logic in action.sh
+- enhanced description
 # 2.0.2 (20200)
 - use printf instead of sed to update description to prevent escape character bugs.
 # 2.0.1 (20100)
