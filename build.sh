@@ -31,5 +31,5 @@ if [ "$UPDATE" = "y" ]; then
     fi
 fi
 rm -f "$ROOT/latest_build.zip"
-7z a "$ROOT/latest_build.zip" "$ROOT"/src/*.sh "$ROOT"/changelog.md "$ROOT"/src/module.prop -x!"$ROOT/$ME" > /dev/null 2>&1
+7z a "$ROOT/latest_build.zip" "$ROOT"/src/*.sh "$ROOT"/src/module.prop "$ROOT"/changelog.md -x!"$ROOT/$ME" > /dev/null 2>&1
 [ $? -eq 0 ] && echo "Build successful: latest_build.zip" || echo "Build failed."
