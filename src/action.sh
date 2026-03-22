@@ -2,5 +2,13 @@
 # action.sh
 
 MODDIR=${0%/*}
+# restart daemon
+if [ ! -e "$DAEMON_PID" ]; then
+    echo -e "Daemon is not running, restarting..."
+    "$MODDIR"/daemon.sh &
+    echo -e "Daemon restarted."
+    exit
+fi
+# run fix
 export CALL_FROM_DAEMON=0
 . "$MODDIR"/fix.sh # run fix (in current shell)
