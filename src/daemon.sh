@@ -5,9 +5,10 @@ MODDIR=${0%/*}
 . "$MODDIR/utils.sh" # import utils
 write_daemon_pid # write daemon pid to file
 
+export DAEMON_STARTUP=1
 while true; do
     export CALL_FROM_DAEMON=1
-    echo $(($(date +%s) + 300)) > "$NEXT_TIME" # update next time
-    "$MODDIR/fix.sh" & # run fix
+    "$MODDIR/fix.sh" # run fix
+    export DAEMON_STARTUP=0
     sleep 300 # sleep for 5 minutes
 done

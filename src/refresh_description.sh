@@ -10,16 +10,19 @@ ORIDES="Fix Android/data, Android/obb, Android/media is missing."
 
 if [ -e "$REBOOT_FLAG" ]; then
     NEW_DES="[🤔 A reboot is pending.] \\n"
-    
 elif [ -e "$DAEMON_PID" ]; then
     local PID_DAEMON="$(cat "$DAEMON_PID")"
     NEW_DES="[✅ Daemon running on PID $PID_DAEMON] \\n"
-    if [ "$CALL_FROM_DAEMON" = "1" ]; then
-        NEW_DES="$NEW_DES\ auto fix: $(date +"%H:%M") 🤖"
+    if [ "$DAEMON_STARTUP" = "1" ]; then
+        if [ "$CALL_FROM_DAEMON" = "1" ]; then
+            NEW_DES="$NEW_DES auto fix: $(date +"%H:%M") 🤖"
+        else
+            NEW_DES="$NEW_DES manual fix: $(date +"%H:%M") 🙂"
+        fi
+        NEW_DES="$NEW_DES | Next fix: $(date -d @"$(cat "$NEXT_TIME")" +"%H:%M")\ 🤖\\n"
     else
-        NEW_DES="$NEW_DES\ manual fix: $(date +"%H:%M") 🙂"
+        NEW_DES="$NEW_DES initializing... 🤖\\n"
     fi
-    NEW_DES="$NEW_DES | Next fix: $(date -d @"$(cat "$NEXT_TIME")" +"%H:%M")\ 🤖\\n"
 else
     NEW_DES="[❌ Deamon is not running.] \\n"
     NEW_DES="$NEW_DES- Click 'action' to restart deamon.\\n"
