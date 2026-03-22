@@ -19,10 +19,10 @@ elif [ -e "$DAEMON_PID" ]; then
         NEW_DES="$NEW_DES- Last fix time: $(date +"%H:%M") (⭕ Manual fix)\\n"
     fi
     NEW_DES="$NEW_DES- Next auto fix time: $(date -d @"$(cat "$NEXT_TIME")" +"%H:%M")\\n"
-    NEW_DES="$NEW_DES- Click 'action' to run fix.\n"
+    NEW_DES="$NEW_DES- Click 'action' to run fix.\\n"
     
 else
-    NEW_DES="[❌ Deamon is not running.] \n"
+    NEW_DES="[❌ Deamon is not running.] \\n"
     NEW_DES="$NEW_DES- Click 'action' to run fix and start deamon.\\n"
 fi
 NEW_DES="$NEW_DES$ORIDES"
