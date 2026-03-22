@@ -1,3 +1,5 @@
+# 2.0.0 (20000)
+- refactor code, run as daemon instead of manual mode.
 # 1.3.0 (13000)
 - Auto run fix in background
 # 1.2.1 (12100)
