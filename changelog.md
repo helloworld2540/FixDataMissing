@@ -1,3 +1,5 @@
+# 2.0.5 (20500)
+- enhanced description
 # 2.0.4 (20400)
 - fix always start daemon while manual fix
 - enhanced description
