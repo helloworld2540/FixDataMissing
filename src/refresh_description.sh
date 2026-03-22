@@ -15,11 +15,11 @@ elif [ -e "$DAEMON_PID" ]; then
     local PID_DAEMON="$(cat "$DAEMON_PID")"
     NEW_DES="[✅ Daemon running on PID $PID_DAEMON] \\n"
     if [ "$CALL_FROM_DAEMON" = "1" ]; then
-        NEW_DES="$NEW_DES- Last fix: $(date +"%H:%M") (🙂 auto)"
+        NEW_DES="$NEW_DES\[Last auto fix: $(date +"%H:%M") 🙂"
     else
-        NEW_DES="$NEW_DES- Last fix: $(date +"%H:%M") (🤡 manual)"
+        NEW_DES="$NEW_DES\[Last manual fix: $(date +"%H:%M") 🙂"
     fi
-    NEW_DES="$NEW_DES | Next fix: $(date -d @"$(cat "$NEXT_TIME")" +"%H:%M")\\n"
+    NEW_DES="$NEW_DES | Next fix: $(date -d @"$(cat "$NEXT_TIME")" +"%H:%M")\]\\n"
     NEW_DES="$NEW_DES Click 'action' to run fix.\\n"
 else
     NEW_DES="[❌ Deamon is not running.] \\n"

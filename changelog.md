@@ -1,3 +1,6 @@
+# 2.0.4 (20400)
+- fix always start daemon while manual fix
+- enhanced description
 # 2.0.3 (20300)
 - add restart daemon logic in action.sh
 - enhanced description
