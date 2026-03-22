@@ -69,8 +69,9 @@ main(){
 
     
 }
-
-"$MODDIR/refresh_description.sh"
+if [ $DAEMON_STARTUP -eq 1 ]; then
+    "$MODDIR/refresh_description.sh"
+fi
 local start_time=$(date +%s)
 main
 local end_time=$(date +%s)
