@@ -1,3 +1,5 @@
+# 2.0.1 (20100)
+- fix description bug
 # 2.0.0 (20000)
 - refactor code, run as daemon instead of manual mode.
 # 1.3.0 (13000)
