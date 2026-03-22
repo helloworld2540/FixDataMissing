@@ -1,3 +1,5 @@
+# 2.1.3 (21300)
+- Fix description stuck in initialize
 # 2.1.2 (21200)
 - fix description display logic bugs
 # 2.1.1 (21100)
