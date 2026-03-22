@@ -74,7 +74,7 @@ local start_time=$(date +%s)
 main
 local end_time=$(date +%s)
 if [ $CALL_FROM_DAEMON -eq 1 ]; then
-    echo $(($(date +%s) + 300 + $(($end_time - $start_time)))) > "$NEXT_TIME" # update next time
+    echo $(($(date +%s) + 1800 + $(($end_time - $start_time)))) > "$NEXT_TIME" # update next time
 else
     echo -e "\r[DONE] $FAILED fail in $COUNT apps in $(($end_time - $start_time))s.         "
 fi

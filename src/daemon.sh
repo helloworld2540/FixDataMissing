@@ -10,5 +10,5 @@ while true; do
     export CALL_FROM_DAEMON=1
     "$MODDIR/fix.sh" # run fix
     export DAEMON_STARTUP=0
-    sleep 300 # sleep for 5 minutes
+    sleep 1800 # sleep for 30 minutes
 done
