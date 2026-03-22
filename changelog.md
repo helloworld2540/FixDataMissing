@@ -1,3 +1,5 @@
+# 2.0.2 (20200)
+- use printf instead of sed to update description to prevent escape character bugs.
 # 2.0.1 (20100)
 - fix description bug
 # 2.0.0 (20000)
