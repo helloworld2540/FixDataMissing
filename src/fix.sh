@@ -70,6 +70,7 @@ main(){
     
 }
 
+"$MODDIR/refresh_description.sh"
 local start_time=$(date +%s)
 main
 local end_time=$(date +%s)

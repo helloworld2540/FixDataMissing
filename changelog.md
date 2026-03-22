@@ -1,3 +1,5 @@
+# 2.1.1 (21100)
+- refresh description before fix.
 # 2.1.0 (21000)
 - enhanced eta time display.
 - change auto fix time to 30 minutes.
