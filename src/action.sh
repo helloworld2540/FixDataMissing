@@ -2,6 +2,7 @@
 # action.sh
 
 MODDIR=${0%/*}
+. "$MODDIR/utils.sh" # import utils
 # restart daemon
 if [ ! -e "$DAEMON_PID" ]; then
     echo -e "Daemon is not running, restarting..."
