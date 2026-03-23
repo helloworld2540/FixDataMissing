@@ -24,11 +24,10 @@ main(){
     local APP_LIST=$(pm list packages)
     assert $?
 
-    local COUNT=$(echo "$APP_LIST" | wc -l)
+    COUNT=$(echo "$APP_LIST" | wc -l)
     local COUNTER=0
     for app in $APP_LIST; do
         local COUNTER=$(($COUNTER + 1))
-        local TMP_FAILED=$FAILED
         local app=${app#package:} # remove prefix
         if [ -z "$app" ]; then # skip empty line
             continue
@@ -43,20 +42,21 @@ main(){
         mkdir -p -m 777 "$MEDIA"
         
         if [ $CALL_FROM_DAEMON -eq 0 ]; then
-            draw_ui "$COUNTER" "$COUNT" "$FAILED"
+            draw_ui "$COUNTER" "$COUNT"
         fi
     done
-
-    
 }
+
 cleanup(){
     rm_file "$LOCK_FILE"
 }
-local start_time=$(date +%s)
+
+start_time=$(date +%s)
 if [ -e "$LOCK_FILE" ]; then
     export LOCKED=1
 else
     export LOCKED=0
+    echo -e "Starting fix..."
     # add lock
     rm_dir "$LOCK_FILE"
     echo $$ > "$LOCK_FILE"
@@ -68,15 +68,15 @@ else
     main
 fi
 
-local end_time=$(date +%s)
-if [ $CALL_FROM_DAEMON -eq 1 ]; then
-    echo $(($(date +%s) + 1800 + $(($end_time - $start_time)))) > "$NEXT_TIME" # update next time
-else
-    echo -e "\r[DONE] Fixed $COUNT apps in $(($end_time - $start_time))s.         "
-fi
-
+end_time=$(date +%s)
 if [ $LOCKED -eq 1 ]; then
     echo -e "Another instance is running, exiting..."
-    "$MODDIR/refresh_description.sh"
-    exit
+else
+    if [ $CALL_FROM_DAEMON -eq 1 ]; then
+        echo $(($(date +%s) + 1800 + $(($end_time - $start_time)))) > "$NEXT_TIME" # update next time
+    else
+        echo -e "\r[DONE] Fixed $COUNT apps in $(($end_time - $start_time))s.         "
+    fi
 fi
+
+"$MODDIR/refresh_description.sh"
