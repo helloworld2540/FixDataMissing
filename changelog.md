@@ -1,3 +1,5 @@
+# 2.2.1 (22100)
+- not install install.sh and changelog.md now
 # 2.2.0 (22000)
 - enhanced performance
 - add process lock to prevent competitive conditions
