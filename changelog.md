@@ -1,3 +1,6 @@
+# 2.2.0 (22000)
+- enhanced performance
+- add process lock to prevent competitive conditions
 # 2.1.3 (21300)
 - Fix description stuck in initialize
 # 2.1.2 (21200)
