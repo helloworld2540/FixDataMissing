@@ -7,7 +7,7 @@ chmod 777 "$MODPATH"/*.sh
 touch "$MODPATH"/".reboot"
 MODDIR="/data/adb/modules/fix_data"
 if [ -f "$MODDIR/.daemon" ]; then
-    echo -e "killing daemon..."
+    echo -e "- Killing daemon..."
     kill -9 "$(cat "$MODDIR/.daemon")"
     rm -f "$MODDIR/.daemon"
 fi
