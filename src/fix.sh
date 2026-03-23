@@ -37,9 +37,9 @@ main(){
         local MEDIA="$ANDROID/media/$app"
 
         # create directory
-        mkdir -p -m 777 "$DATA"
-        mkdir -p -m 777 "$OBB"
-        mkdir -p -m 777 "$MEDIA"
+        [ ! -d "$DATA" ] && mkdir -p -m 777 "$DATA"
+        [ ! -d "$OBB" ] && mkdir -p -m 777 "$OBB"
+        [ ! -d "$MEDIA" ] && mkdir -p -m 777 "$MEDIA"
         
         if [ $CALL_FROM_DAEMON -eq 0 ]; then
             draw_ui "$COUNTER" "$COUNT"
