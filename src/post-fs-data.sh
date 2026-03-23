@@ -3,6 +3,8 @@
 
 # tools variable
 MODDIR=${0%/*}
+. "$MODDIR/utils.sh" # import utils
+
 rm -f "$REBOOT_FLAG" # clear reboot flag
 rm -f "$LOCK_FILE" # clear lock file
 rm -f "$DAEMON_PID" # clear daemon pid

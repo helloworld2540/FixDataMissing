@@ -1,6 +1,6 @@
 {
-    "version": "2.2.5",
-    "versionCode": 22500,
+    "version": "2.2.6",
+    "versionCode": 22600,
     "zipUrl": "https://raw.githubusercontent.com/helloworld2540/FixDataMissing/refs/heads/main/latest_build.zip",
     "changelog": "https://raw.githubusercontent.com/helloworld2540/FixDataMissing/refs/heads/main/changelog.md"
 }

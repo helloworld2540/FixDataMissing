@@ -1,3 +1,5 @@
+# 2.2.6 (22600)
+- fixed not import utils in post-fs-data.sh
 # 2.2.5 (22500)
 - enhanced performance of fix.sh
 - clean up logic move to post-fs-data.sh
