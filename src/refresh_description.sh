@@ -24,7 +24,7 @@ elif [ -e "$DAEMON_PID" ]; then
         else
             NEW_DES="$NEW_DES manual fix: $(date +"%H:%M") 🙂"
         fi
-        NEW_DES="$NEW_DES | Next fix: $(date -d @"$(cat "$NEXT_TIME")" +"%H:%M")\ 🤖\\n"
+        NEW_DES="$NEW_DES | next fix: $(date -d @"$(cat "$NEXT_TIME")" +"%H:%M")\ 🤖\\n"
     fi
 else
     NEW_DES="[❌ Deamon is not running.] \\n"
