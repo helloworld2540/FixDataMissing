@@ -1,3 +1,5 @@
+# 2.2.2 (22200)
+- fixed ui bugs
 # 2.2.1 (22100)
 - not install install.sh and changelog.md now
 - kill daemon on install
