@@ -6,6 +6,7 @@ DAEMON_PID="$MODDIR/.daemon"
 PROP="$MODDIR/module.prop"
 REBOOT_FLAG="$MODDIR/.reboot"
 NEXT_TIME="$MODDIR/.next_time"
+LOCK_FILE="$MODDIR/.lock"
 
 ROOT="/storage/emulated/0"
 ANDROID="$ROOT/Android"

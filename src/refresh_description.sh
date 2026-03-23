@@ -16,7 +16,9 @@ elif [ -e "$DAEMON_PID" ]; then
     if [ "$DAEMON_STARTUP" = "1" ]; then
         NEW_DES="$NEW_DES initializing... 🤖\\n"
     else
-        if [ "$CALL_FROM_DAEMON" = "1" ]; then
+        if [ $LOCKED -eq 1 ]; then
+            NEW_DES="$NEW_DES locked: $(date +"%H:%M") 🔒"
+        elif [ "$CALL_FROM_DAEMON" = "1" ]; then
             NEW_DES="$NEW_DES auto fix: $(date +"%H:%M") 🤖"
         else
             NEW_DES="$NEW_DES manual fix: $(date +"%H:%M") 🙂"

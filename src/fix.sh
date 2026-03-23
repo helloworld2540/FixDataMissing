@@ -25,7 +25,6 @@ main(){
     assert $?
 
     local COUNT=$(echo "$APP_LIST" | wc -l)
-    local FAILED=0
     local COUNTER=0
     for app in $APP_LIST; do
         local COUNTER=$(($COUNTER + 1))
@@ -38,29 +37,10 @@ main(){
         local OBB="$ANDROID/obb/$app"
         local MEDIA="$ANDROID/media/$app"
 
-        # create Android/data
-        new_dir "$DATA"
-        if [ $? -eq 0 ]; then
-            chmod 777 "$DATA"
-        else
-            [ $TMP_FAILED -eq $FAILED ] && FAILED=$(($FAILED + 1))
-        fi
-
-        # create Android/obb
-        new_dir "$OBB"
-        if [ $? -eq 0 ]; then
-            chmod 777 "$OBB"
-        else
-            [ $TMP_FAILED -eq $FAILED ] && FAILED=$(($FAILED + 1))
-        fi
-
-        # create Android/media
-        new_dir "$MEDIA"
-        if [ $? -eq 0 ]; then
-            chmod 777 "$MEDIA"
-        else
-            [ $TMP_FAILED -eq $FAILED ] && FAILED=$(($FAILED + 1))
-        fi
+        # create directory
+        mkdir -p -m 777 "$DATA"
+        mkdir -p -m 777 "$OBB"
+        mkdir -p -m 777 "$MEDIA"
         
         if [ $CALL_FROM_DAEMON -eq 0 ]; then
             draw_ui "$COUNTER" "$COUNT" "$FAILED"
@@ -69,16 +49,34 @@ main(){
 
     
 }
-if [ $DAEMON_STARTUP -eq 1 ]; then
-    "$MODDIR/refresh_description.sh"
-    export DAEMON_STARTUP=0
-fi
+cleanup(){
+    rm_file "$LOCK_FILE"
+}
 local start_time=$(date +%s)
-main
+if [ -e "$LOCK_FILE" ]; then
+    export LOCKED=1
+else
+    export LOCKED=0
+    # add lock
+    rm_dir "$LOCK_FILE"
+    echo $$ > "$LOCK_FILE"
+    trap cleanup EXIT INT TERM
+    if [ $DAEMON_STARTUP -eq 1 ]; then
+        "$MODDIR/refresh_description.sh"
+        export DAEMON_STARTUP=0
+    fi
+    main
+fi
+
 local end_time=$(date +%s)
 if [ $CALL_FROM_DAEMON -eq 1 ]; then
     echo $(($(date +%s) + 1800 + $(($end_time - $start_time)))) > "$NEXT_TIME" # update next time
 else
-    echo -e "\r[DONE] $FAILED fail in $COUNT apps in $(($end_time - $start_time))s.         "
+    echo -e "\r[DONE] Fixed $COUNT apps in $(($end_time - $start_time))s.         "
 fi
-"$MODDIR/refresh_description.sh"
+
+if [ $LOCKED -eq 1 ]; then
+    echo -e "Another instance is running, exiting..."
+    "$MODDIR/refresh_description.sh"
+    exit
+fi
