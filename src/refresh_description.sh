@@ -7,8 +7,9 @@ MODDIR=${0%/*}
 
 # original description
 ORIDES="Fix Android/data, Android/obb, Android/media is missing."
-
-if [ -e "$REBOOT_FLAG" ]; then
+if [ -e "$DISABLE_FLAG" ]; then
+    NEW_DES="[❌ Disabled] \\n"
+elif [ -e "$REBOOT_FLAG" ]; then
     NEW_DES="[🤔 A reboot is pending.] \\n"
 elif [ -e "$DAEMON_PID" ]; then
     local PID_DAEMON="$(cat "$DAEMON_PID")"
@@ -27,7 +28,7 @@ elif [ -e "$DAEMON_PID" ]; then
     fi
 else
     NEW_DES="[❌ Deamon is not running.] \\n"
-    NEW_DES="$NEW_DES- Click 'action' to restart deamon.\\n"
+    NEW_DES="$NEW_DES Click 'action' to restart deamon.\\n"
 fi
 NEW_DES="$NEW_DES$ORIDES"
 STATIC_PROPS=$(grep -v "^description=" "$PROP")

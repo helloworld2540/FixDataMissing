@@ -1,3 +1,6 @@
+# 2.2.4 (22400)
+- Add logic to prevent the daemon from restarting twice.
+- Description: Supports more states
 # 2.2.3 (22300)
 - enhanced eta display
 # 2.2.2 (22200)
