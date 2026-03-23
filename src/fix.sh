@@ -50,7 +50,13 @@ main(){
 cleanup(){
     rm_file "$LOCK_FILE"
 }
-
+update_eta(){
+    local expected_start=$(cat "$NEXT_TIME" 2>/dev/null || echo $start_time)
+    local drift=$(( $start_time - $expected_start ))
+    [ $drift -lt 0 ] && drift=0 
+    local execution_time=$(( $end_time - $start_time ))
+    echo $(( $(date +%s) + 1800 + $drift + $execution_time )) > "$NEXT_TIME" # update next time
+}
 start_time=$(date +%s)
 if [ -e "$LOCK_FILE" ]; then
     export LOCKED=1
@@ -73,7 +79,7 @@ if [ $LOCKED -eq 1 ]; then
     echo -e "Another instance is running, exiting..."
 else
     if [ $CALL_FROM_DAEMON -eq 1 ]; then
-        echo $(($(date +%s) + 1800 + $(($end_time - $start_time)))) > "$NEXT_TIME" # update next time
+        update_eta
     else
         echo -e "\r[DONE] Fixed $COUNT apps in $(($end_time - $start_time))s.         "
     fi
