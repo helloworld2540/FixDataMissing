@@ -1,3 +1,5 @@
+# 2.2.3 (22300)
+- enhanced eta display
 # 2.2.2 (22200)
 - fixed ui bugs
 # 2.2.1 (22100)
